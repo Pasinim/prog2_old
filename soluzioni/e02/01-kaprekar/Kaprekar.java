@@ -48,7 +48,8 @@ public class Kaprekar {
    */
   public static byte[] numToDigits(int n, int digits) {
     byte[] a = new byte[digits];
-    for (int i = digits - 1; i >= 0; i--, n /= 10) a[i] = (byte) (n % 10);
+    for (int i = digits - 1; i >= 0; i--, n /= 10) 
+      a[i] = (byte) (n % 10);
 
     if (n > 0)
       throw new IllegalArgumentException(
@@ -117,7 +118,7 @@ public class Kaprekar {
     try {
       is =
           new URL(
-                  "https://www.randomasds.org/integers/?num=1&min=1&max=9999&col=1&base=10&format=plain&rnd=new")
+                  "https://www.random.org/integers/?num=1&min=1&max=9999&col=1&base=10&format=plain&rnd=new")
               .openStream();
     } catch (MalformedURLException e) {
       e.printStackTrace();
