@@ -1,4 +1,4 @@
-//OVERVIEW: eccezione sollevata nel caso di insieme vuoto
+    //OVERVIEW: eccezione sollevata nel caso di insieme vuoto
 public class EmptyException extends RuntimeException{
     //costruttori
     public EmptyException() {
