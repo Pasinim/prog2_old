@@ -13,17 +13,8 @@ public class IntQueue {
      * non è possibile aggiungere elementi
      */
     private int head, tail;
-    //COSTRUTTORI
-    /**
-     *PRECONDIZONI: 
-     *EFFETTI COLLATERALI:
-     *POSTCONDIZIONI: restituisce una coda vuota di dimension n
-     */
-    public IntQueue(int n){
-        els = new int[n];
-        head=-1;
-        tail=0;
-    }
+   
+   
     /**
      * AF: Dominio: oggetti concreti, dominio: oggetto astratto:
      * AF(els, head, tail) -->  [elements[i] | tail <= i <= head ]= 
@@ -34,34 +25,78 @@ public class IntQueue {
      *      - elements non deve essere null
      *      - -1< =head < element.size-1
      *      - 0 < =head < element.size-1
+     
+     
      */
+    //COSTRUTTORI
+    /**
+     *PRECONDIZONI: n>=0
+     *EFFETTI COLLATERALI:
+     *POSTCONDIZIONI: inizializza this affinchè sia una coda vuota
+     */
+    public IntQueue(int n){
+        els = new int[n];
+        head=-1;
+        tail=0;
+    }
     //METODI
         /**
      *PRECONDIZONI: 
-     *EFFETTI COLLATERALI: la coda potrebbe essere modificata
-     *POSTCONDIZIONI: alla coda viene aggiunto l'elemento passato per parametro
+     *EFFETTI COLLATERALI: potrebbe modificare this
+     *POSTCONDIZIONI:   aggiunge n alla coda
+                        se la coda è piena solleva un'eccezione di tipo FullException
      */
     public void enqueue (int n){
-        if (tail==head) throw new NullPointerException();
-        if (head<tail) els[head++]=n;
-        else {
-            if (tail==els.size-1) tail=0;
-            els[head++]=n;
-        }
+        if (isFull) throw new FullException("Coda piena, impossibile aggiungere un altro elemento");
+        if (isEmpty) head=0;
+        els[tail] = n;
+        tail = (tail + 1) % elements.length; //con il modulo cicla se tail arriva alla fine
+
     }
-    /**
-     * POSTCONDIZIONI: toglie un elemento alla coda e tail restituisce
+
+    //PostCondizioni: restituisce true se la coda è piena, false altrimenti
+    public boolean isFull(){
+        return head==tail;
+    }
+
+    //PostCondizioni: restituisce true se la coda è vuota, false altrimenti
+    public boolean isEmpty(){
+        return head == -1;
+    }
+        /**
+     *PRECONDIZONI: 
+     *EFFETTI COLLATERALI: potrebbe modificare this
+     *POSTCONDIZIONI:   rimuove e restituisce l'intero nella testa della coda
+                        se la coda è piena solleva un'eccezione di tipo EmptyException
      */
     public int dequeue(){
-        return els[tail--];
+        if (isEmpty()) throw new EmptyException();
+        int r =els[head];
+        head = (head + 1) % els.length;
+        if (head==tail){ //se la coda è vuota
+            head = -1;
+            tail = 0;
+        }
+        return r;
     }
 
     @Override
+    //POSTCONDIZIONI: implementa la funzione di astrazione
     public String toString(){
         String str = "\tCoda:\t\n";
         for (int i=head-1; i>=tail; i--){
             str += "\t" + els[i] + "\t";
         }
         return str + "\n";
+    }
+
+    @Override
+    public booean equals(IntQueue other){
+
+    }
+
+    //POSTCONDIZIONI: implementa la funzione di astrazione
+    private boolean repOk(){
+        return true;
     }
 }

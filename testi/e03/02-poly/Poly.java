@@ -34,8 +34,20 @@ public class Poly {
      * Postcondizioni: esegue l'addizione tra il polinomio this e il polinomio q: this + q
      */
     public Poly add(Poly q) {
-        int minDegree;
-        
+        // int maxDegree, minDegree;
+        // if (this.degree <= q.degree) {
+        //     maxDegree=q.degree;
+        //     minDegree=this.degree;
+        // }else{
+        //     maxDegree=this.degree;
+        //     minDegree=q.degree;
+        // }
+        for (int i=this.degree+1; i>0; i--){
+            Poly p = new Poly(this.terms[i], i);
+        }
+            
+
+
 
         return null;
     }
@@ -61,7 +73,17 @@ public class Poly {
         return null;
     }
 
-    Poly
-    
+    public static void main(String[] args) {
+        int p, q;
+        Scanner scan = new Scanner(System.in);
+        p=scan.nextInt();
+        
+        for (int i=0; i<p; i++){
+            int c = scan.nextInt();
+            int n = scan.nextInt();
+            Poly (c, n)     
+        }
+        scan.close();
+    }
     
 }
