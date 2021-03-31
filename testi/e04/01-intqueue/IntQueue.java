@@ -38,6 +38,8 @@ public class IntQueue {
         els = new int[n];
         head=-1;
         tail=0;
+        
+        assert repOk();
     }
     //METODI
         /**
@@ -47,10 +49,10 @@ public class IntQueue {
                         se la coda è piena solleva un'eccezione di tipo FullException
      */
     public void enqueue (int n){
-        if (isFull) throw new FullException("Coda piena, impossibile aggiungere un altro elemento");
-        if (isEmpty) head=0;
+        if (isFull()) throw new FullException("Coda piena, impossibile aggiungere un altro elemento");
+        if (isEmpty()) head=0;
         els[tail] = n;
-        tail = (tail + 1) % elements.length; //con il modulo cicla se tail arriva alla fine
+        tail = (tail + 1) % els.length; //con il modulo cicla se tail arriva alla fine
 
     }
 
@@ -77,26 +79,49 @@ public class IntQueue {
             head = -1;
             tail = 0;
         }
+        assert repOk();
         return r;
     }
 
+    //POSTCONDIZIONI: restituisce il numero di elementi presenti nella coda
+    public int size(){
+        assert repOk();
+
+        if (isEmpty()) return 0;
+        if (isFull()) return els.length;
+        return (tail - head + els.length) % els.length;
+    }
+
     @Override
-    //POSTCONDIZIONI: implementa la funzione di astrazione
     public String toString(){
-        String str = "\tCoda:\t\n";
-        for (int i=head-1; i>=tail; i--){
-            str += "\t" + els[i] + "\t";
+        assert repOk();
+
+        String str = "IntQueue: [";
+        int i;
+        if (!isEmpty()){
+            for (i=0; i<size()-1; i++)
+                str+=els[(head + i) % els.length] + ", "; 
+            str+=els[(head + i) % els.length]; //perchè l'ultimo elemento non ha  la virgola 
         }
-        return str + "\n";
+
+        return str + "]";
     }
 
-    @Override
-    public booean equals(IntQueue other){
-
-    }
+    // @Override
+    // public booean equals(IntQueue other){}
 
     //POSTCONDIZIONI: implementa la funzione di astrazione
     private boolean repOk(){
-        return true;
+        //metto in end le condizioni nella AF
+        return size() < els.length 
+            && els!=null
+
+            && -1 <= head
+            && head <els.length
+
+            && tail>=0
+            && tail < els.length
+
+            &&(head == -1 || tail == 0);
     }
 }
