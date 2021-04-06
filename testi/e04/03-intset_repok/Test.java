@@ -5,7 +5,7 @@ public class Test {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
-        IntQueue q = new IntQueue(4);
+        IntQueue q = new IntSetRepok(4);
         q.enqueue(1);
         q.enqueue(2);
         q.enqueue(3);
