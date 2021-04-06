@@ -24,15 +24,19 @@ public class Rational {
                 se il denominatore == 0 solleva un'eccezione di tipo ArithmeticException
     Preservazione RI:   Se d==0 è sollevata un'eccezione e quindi this non è istanziato 
                             altrimenti è utilizzato il suo valore assoluto, quindi è preservato
-    Correttezza: 
-    Preservazione AI:
+    Correttezza: AF(numerator,denominator)
+                = numerator/denominator
+                = (numerator/cd)/(denominator/cd), dove cd = gcd(|numerator|, |denominator|)
+                = -|numerator|/|denominator| se num * den < 0,
+                |numerator|/|denominator| altrimenti
+    
         
      */
     public Rational(int n, int d){
         if (d==0) throw new ArithmeticException("Il denominatore non può essere nullo.");
         numerator = (n*d > 0) ? Math.abs(numerator) : -Math.abs(numerator);
         denominator = Math.abs(denominator);
-        reduce ();
+        reduce();
         assert RepOK();
     }
 
@@ -96,7 +100,7 @@ public class Rational {
      *                      altirmnti valido per ipotesi induttiva
      * 
      */
-    public reciprocal(){
+    public Rational reciprocal(){
         //if (numerator == 0) throw new ArithmeticException("Il numeratore non può essere nullo quando viene eseguito il reciproco");
         //lo controlla il costruttore
         return new Rational(denominator, numerator);
@@ -136,13 +140,13 @@ public class Rational {
     /**
      * den>0
      */
-    private RepOK(){
+    private boolean RepOK(){
         return denominator > 0;
     }
 
     @Override
-    public string toString(){
-        if (denominator==1) return numerator;
+    public String toString(){
+        if (denominator==1) return "" + numerator;
         return numerator + "/" + denominator;
     }
 
@@ -152,7 +156,7 @@ public class Rational {
     }
 
     @Override
-    public boolan equals(Object o){
+    public boolean equals(Object o){
         if (!(o instanceof Rational)) return false; //restituisce false anche se è null
         //mi sono accertato che o sia effettivamente Rational, quindi posso castare
         Rational other = (Rational) o;
