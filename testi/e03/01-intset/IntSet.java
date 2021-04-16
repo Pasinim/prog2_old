@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /** 
- * Le istanze di questa classe rappresentano degli insiemi di interi. Gli oggetti di questo 
+ * Le istanze di questa classe rappresentano degli insiemi di interi. Gli oggetti di questa classe
  * sono mutabili
  */
 
