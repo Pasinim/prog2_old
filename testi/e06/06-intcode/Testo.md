@@ -95,7 +95,7 @@ Sono definiti tre modalità:
 * Modalità 1, valore:
   il parametro è il valore letto.
   (Questa modalità non è mai usata per le scritture.)
-* Modalità 2, indirizzamento indiretto:
+* Modalità 2, indirizzamento indiretto (o relativo):
   il parametro è aggiunto al relative base register per ottenere l'indirizzo della cella che dev'essere acceduta per la scrittura o la lettura.
 
 
