@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Objects;
 //OVERVIEW: Le istanze di questa classe forniscono una rappresentazione di un polinomio denso
 //gli oggetti di questa classe NON sono mutabili e i metodi sono creazionali
 
@@ -6,121 +7,91 @@ import java.util.Scanner;
  * Non uso i set dato che per loro natura non sono ordinati 
  */
 public class Poly {
-    //ATTRIBUTI
-    private final int[] terms;
-    private final int degree;
-    
-    //costruttori
-    /**
-     * Postcondizioni: inizializza this affinchè rappresenti il 
-     * polinomio zero
-     */
-    public Poly(){
+   //ATTRIBUTI
+   //Variabile d'istanza che rappresenta i coefficienti del polinomio
+   private int terms[];
+   //Variabile d'istanza che rappresenta il grado del polinomio
+   private int deg;
+
+   //COSTRUTTORI
+   //POST: istanzia un polinomio zero
+   public Poly(){
         terms = new int[1];
-        degree=0;
-    }
-
-    /**
-     * Postcondizioni: inizializza this affinchè rappresenti un polinomio
-     * cx^n. Solleva un'eccezione se il grado inserito è negativo 
-     */
-    public Poly(int c, int n) {
-        if (n<0) throw new NegativeExponentException("Il grado di un polinomio non può essere negativo.");
-        if (c==0) degree=0; //se il coefficiente è 0 allora il polinomio è 0
-        else degree=n;
-        terms = new int[degree+1]; //il polinomio di grado 0 è composto da 1 elemento
-        terms[degree]=c;
-    }
-
-    private Poly (int n){
-        terms = new int[n+1];
-        degree = n;
-    }
-
-
-    //METODI
-    /**
-     * Post: restituisce il grado del polinomio, cioè l'esponente più grande con un coefficiente non nullo
-     */
-    public int degree(){
-        return this.degree;
-    }
-    //Post: restituisce il coefficiente del termine di grado d
-    public int coeff(int d){
-        return terms[d+1];
-    }
-
-    /**
-     * Precondizioni:   q non nullo
-     * Postcondizioni: esegue l'addizione tra il polinomio this e il polinomio q: this + q
-     */
-    public Poly add(Poly q) {
-        Poly larger, smaller;
-        if (degree > q.degree) {larger=this; smaller=q;} else {larger=q; smaller=this;}
-        int newDeg = larger.degree;
-        if (degree == q.degree) //controllo che il coefficiente massimo non sia zero
-            for (int i=degree; i>0; i--)
-                if (terms[i]+q.terms[i]==0) newDeg--; else break;
-        Poly r = new Poly(newDeg);
-        int i;
-        for(i=0; i<=smaller.degree && i<=newDeg; i++)
-            r.terms[i]=larger.terms[i] + smaller.terms[i];
-        //quando ci sono solamente i coefficienti del poly più grande li copio semplicemente
-        for (int j=i; j<=larger.degree; j++) 
-            r.terms[j] = larger.terms[j];
-        System.out.println("\tDeg: " + r.degree());
-        System.out.println("\tPoly: " + r.toString());
-
-        return r;
-    }
-    /**
-     * Postcondizioni: esegue la differenza tra il polinomio this e il polinomio q:
-     * return this - {q}
-     */
-    public Poly diff(Poly p) {
-        Poly q = new Poly();
-        for (int i = 1; i <= p.degree(); i++)
-            q = q.add(new Poly(p.coeff(i)*i, i-1));
-        return q;
-    }
-       
-    /**
-     * Postcondizioni: esegue la moltiplicazione tra il polinomio this e il polinomio q
-     */
-    public Poly mul(Poly q) {
-        return null;
-    }
-
-    /**
-     * Postcondizioni: restituisce il polinomio opposto
-     */
-    public Poly minus() {
-        return null;
-    }
+        deg = 0;
+   }
     
-    //postcondizioni: restituisce una rappresentazione testuale di Poly
-    @Override 
-    public String toString(){
-        String str = "";
-        for (int i=this.degree(); i>0; i--)
-            str += terms[i]+ "x^" + i + " + ";
-        return str + terms[0] + "\n";
+   //POST: Istanzia un polinomio cx^n
+//          Se n<0 solleva una eccezione di tipo NegativeExponentException
+   public Poly (int c, int n){
+        if (n<0) throw new NegativeExponentException ("Poly must have a positive exponent. Found: " + n);
+        if (n==0){
+            deg = 0;
+            terms = new int[1];
+        }
+        else{
+            terms = new int[n+1];
+            //for (int i=0; i<n; i++) 
+              //  terms[i] = 0; //serve davvero o lo fa da solo??
+            deg = n;
+            terms[n] = c; 
+        }
+   }
+   
+   //EFFECTS: restituisce un nuovo polinomio di grado d
+            // se n<0 restituisce una eccezione di tipo NegativeExponentException
+   public Poly (int n){
+        if (n<0) throw new NegativeExponentException ("Poly must have a positive exponent. Found: " + n);
+        if (n==0){
+            terms = new int[1];
+            deg = 0;
+        }else{
+            terms = new int[n+1];
+            deg=n;
+        }
+   }
+
+   //METODI
+   //EFFECTS: restituisce il grado di this
+   public int degree(){
+       return deg;
+   }
+
+   //EFFECTS: restituisce il coefficente del termine di grado d
+   public int coeff(int d){
+       return terms[d];
+   }
+
+   //PRE: q not null
+   //EFFETCS: restituisce un nuovo polinomio ottenuto da this + q
+   public Poly add(Poly q){
+        Objects.requireNonNull(q);
+        Poly add_poly;
+        if (this.deg >= q.deg){
+            add_poly = new Poly(this.deg);
+            for (int i=0; i<=q.deg; i++)
+                add_poly.terms[i] = this.terms[i] + q.coeff(i);
+            for (int i=q.deg+1; i<=add_poly.deg; i++)
+                add_poly.terms[i] = this.terms[i];
+        }else{
+            add_poly = new Poly (q.deg);
+        }
+        return add_poly;
+    }
+
+   @Override
+   public String toString(){
+       String str = "";
+       for (int i=deg; i>0; i--)
+            str += terms[i] + "x^" + i + " + ";
+       return str + terms[0] + "";
     }
 
     public static void main(String[] args) {
-        int p;
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Inserisci il grado: ");
-        p=scan.nextInt();
-        Poly r = new Poly();
-        for (int i=0; i<p; i++){
-            int c = scan.nextInt();
-            Poly q = new Poly(c, i);
-            r.add(q);
-        }
-        System.out.println("DEg: " + r.degree());
-        System.out.println("Poly: " + r.toString());
-        scan.close();
+        Poly p = new Poly(3, 3);
+        Poly q = new Poly (2, 2);
+        p =  p.add(q);
+        System.out.println(p.toString());
     }
-    
 }
+
+
