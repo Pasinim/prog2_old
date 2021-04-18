@@ -15,7 +15,7 @@ import javax.management.InstanceAlreadyExistsException;
 //          A seguito di un inserimento della k->, la nuova mappa sarà:
 //          {k_1 : v_1, ..., k_n : v_n, k : v} se k!=k_i per i=1...,n oppure
 //          {k_1 : v_1, ..., ..., k_j: v, k_n : v_n} se esiste j t.c. k_j = k
-public class Simplemap {
+public class Simplemap2 {
     //ATTRIBUTI
     private List<String> keys;
     private List<Integer> values;
@@ -40,7 +40,7 @@ public class Simplemap {
      * Pres AI: this è vuoto 
      *          size = 0
      */
-    public Simplemap (){
+    public Simplemap2 (){
         keys = new ArrayList<>();
         values = new ArrayList<>();
     }
