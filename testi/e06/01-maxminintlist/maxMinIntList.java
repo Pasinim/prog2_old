@@ -3,7 +3,7 @@
  *             gli oggetti sono immutabili.
  *              intList è una sequenza [x1, x2, ..., xn]
  */
-public class maxMinIntList{
+public class maxMinIntList extends List<>{
     //CAMPI 
     private List<Integer> list;
 

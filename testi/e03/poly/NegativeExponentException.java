@@ -1,3 +1,4 @@
+package poly;
 //eccezione sollevata nel caso in cui venga inserito un esponente negativo
 public class NegativeExponentException extends RuntimeException{
     public NegativeExponentException() {
