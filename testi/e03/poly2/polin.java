@@ -2,9 +2,9 @@ import java.util.Objects;
 public class polin {
      //CAMPI
    //Variabile d'istanza che rappresenta i coefficienti del polinomio
-   private int terms[];
+   private final int terms[];
    //Variabile d'istanza che rappresenta il grado del polinomio
-   private int deg;
+   private final int deg;
    /**
     * ABS FUNC: AF(terms, deg) = {terms[0], terms[1]...., terms[deg-1], terms[deg]}
     * REP INV: deg > 0
@@ -13,13 +13,13 @@ public class polin {
     */
 
    //COSTRUTTORI
-   //POST: istanzia un polinomio zero
+   //POST: Inizializza un polinomio zero
    public polin(){
         terms = new int[1];
         deg = 0;
    }
     
-   //POST: Istanzia un polinomio cx^n
+   //POST: Inizializza un polinomio cx^n
 //          Se n<0 solleva una eccezione di tipo NegativeExponentException
    public polin (int c, int n){
         if (n<0) throw new NegativeExponentException ("Poly must have a positive exponent. Found: " + n);
@@ -34,7 +34,7 @@ public class polin {
         }
    }
    
-   //EFFECTS: restituisce un nuovo polinomio di grado d
+   //EFFECTS: Inizializza un nuovo polinomio di grado d
             // se n<0 restituisce una eccezione di tipo NegativeExponentException
    public polin (int n){
         if (n<0) throw new NegativeExponentException ("Poly must have a positive exponent. Found: " + n);
