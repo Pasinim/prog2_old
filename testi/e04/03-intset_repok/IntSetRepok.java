@@ -95,6 +95,6 @@ public class IntSetRepok {
     }
     
     private boolean RepOk (){
-        return elements != null
+        return elements != null;
     }
 }
