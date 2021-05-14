@@ -139,13 +139,13 @@ public class IntQueue {
   public String toString() {
     assert repOK();
 
-    String r = "IntQueue : [";
-    if (!isEmpty()) {
-      int i;
-      for (i = 0; i < size() - 1; i++) r += elements[(head + i) % elements.length] + ", ";
-      r += elements[(head + i) % elements.length];
-    }
-    return r + "]";
+      String r = "IntQueue : [";
+      if (!isEmpty()) {
+        int i;
+        for (i = 0; i < size() - 1; i++) r += elements[(head + i) % elements.length] + ", ";
+        r += elements[(head + i) % elements.length];
+      }
+      return r + "]";
   }
 
   @Override

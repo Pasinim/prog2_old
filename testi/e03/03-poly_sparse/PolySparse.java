@@ -1,3 +1,5 @@
+import javax.swing.plaf.metal.MetalTextFieldUI;
+
 /**
  * OVERVIEW: le istanze di questa classe rappresentano polinomi sparsi. 
  * Gli oggetti di questa classe sono immutabili
@@ -44,41 +46,64 @@ public class PolySparse {
     }
 
     //EFFECTS: restituisce il numero di termini con esponente diverso
-    public int different_degree(PolySparse q){
-        int c = 0, maxLength;
-        if (this.degree.length >= q.degree.length)
-            maxLength = this.degree.length;
-        else 
-            maxLength = q.degree.length;
-        for (int i = 0; i<maxLength; i++){
-            if ()
-        }
+    // public int different_degree(PolySparse q){
+    //     int c = 0, maxLength;
+    //     if (this.degree.length >= q.degree.length)
+    //         maxLength = this.degree.length;
+    //     else 
+    //         maxLength = q.degree.length;
+    //     for (int i = 0; i<maxLength; i++){
+    //         if ()
+    //     }
 
-    }
+    // }
 
         //EFFECTS: restituisce il polinomio ottenuto dalla somma di this e  q
     public PolySparse add (PolySparse q){
-        PolySparse new_poly;
-        if (this.coeff(coeff.length - 1) >= q.coeff(coeff.length - 1)){
-             new_poly = new PolySparse(this.coeff.length);
-        }else{
-             new_poly = new PolySparse(q.coeff.length);
-        }
-        System.out.println("Lunghezza nuovo: " + new_poly.coeff.length);
+        int maxDegree;
+        boolean found = false;
+        if (this.getLength() >= q.getLength())
+            maxDegree = this.getLength();
+        else
+            maxDegree = q.getLength();
+        
+        PolySparse new_poly = new PolySparse(maxDegree);
         //ciclo tutti i termini nel polinomio 
-        for (int i=0; i < new_poly.coeff.length; i++){
-            //se due esponenti sono uguali devo sommare i coefficienti
-            new_poly.degree[i] = this.deg(i);
-            if (this.deg(i) == q.deg(i)){
-                new_poly.coeff[i] = this.coeff(i) + q.coeff(i);
-            }else if (this.coeff(i)!=0){
-                new_poly.coeff[i] = this.coeff(i);
-            }else{
-                new_poly.coeff[i] = q.coeff(i);
-            }
+        for (int i=0; i < this.getLength(); i++){
+            found = false;
+           for (int j=0; j < q.getLength(); j++){
+                if (this.deg(i) == q.deg(j)){
+                    found = true;
+                    new_poly.coeff(i) = this.coeff(i) + q.coeff(j`);
+                    new_poly.deg(i) = this.deg(i);
+                }
+           }
+           if (!found){
+               new_poly.coeff(i)
+           }
         }
         return new_poly;
     }
+
+    public PolySparse addSpace(){
+        PolySparse new_poly = new PolySparse(this.getLength()+1);
+        return new_poly;
+    }
+
+    //EFFECTS: restituisce la lunghezza di this
+    public int getLength(){
+        return this.degree.length;
+    }
+
+    //EFFECTS: restituisce true se il polinomio non può più contenere altri elementi, false altrimenti
+    //          solleva un'eccezione di tipo EmptyException se il polinomio non contiene elementi
+    public boolean isFull(){
+        if (this.degree.length == 0) throw new EmptyException ("Poly should be not empty");
+        if (this.deg(this.degree.length - 1) != 0 )
+            return true
+        return false;
+    }
+    
 
     @Override
     public String toString(){
