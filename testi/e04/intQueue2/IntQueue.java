@@ -1,3 +1,5 @@
+import java.util.concurrent.ThreadPoolExecutor;
+
 //OVERVIEW: le istanze di questa classe rappresentano code FIFO di interi di dimensione prefissata
 // Gli oggetti di questa classe sono mutabili
 public class IntQueue {
@@ -15,15 +17,25 @@ public class IntQueue {
      *      {els[head], ..., els[size-1], els[0], els[tail-1]}  se head>size
      * 
      * REP INV: La dimensione della coda può essere al massio els.size-1
-     *      -1 < head < size
+     *      -1 <= head < size
      *      0 <= tail < size 
      *      head = -1 -> tail = 0 
+     * 
+     * ABS INV: size > 0
+     *          isEmpty ->  head = -1 -> tail = 0 
+     *          !isEmpty -> head && tail >= 0
      *      
      */
 
     //COSTRUTTORI
-    //EFFECTS inizializza una lista vuota di dimensione n
+    //EFFECTS inizializza una lista vuota di dimensione n. Se n <= 0 solleva una eccezione IllegalArgumentException
+    /**
+     * Correttezza: AF(els, head, tail) = {}, head = -1; tail = 0;
+     * Preservazione RI: head = -1; tail = 0, quindi entrambe minore di size
+     * Preservazione AI: size > 0
+     */
     public IntQueue (int n){
+        if (n<=0) throw new IllegalArgumentException("n must be > 0. Found " + n);
         els = new int[n];
         head = -1; 
         tail = 0;
@@ -32,8 +44,13 @@ public class IntQueue {
     //METODI
     /**
      * Effects: aggiunge l'elemento x alla coda. Se la coda è piena solleva un'eccezione di tipo ILlegalArgument
-     * 
+     * Correttezza: Assumo di avere una coda {x_1, x_2, ..., x_n}, dove n<size.
+     *              se la coda non è piena la coda in segito all'aggiunta di x sarà {x_1, x_2, ..., x_n, x} se head < tail 
+     *              {x, x_1, x_2, ..., x_n} se head > tail (in questo esempio tail = 0)
+     * Preservazione RI: head e tail < size dato che sto operando con il modulo
+     * Preservazione AI: size > 0 per il costruttore
      */
+    
     public void enqueue(int x){
         if (isFull()) throw new IllegalArgumentException("coda piena, impossibil aggiungere elementi");
         if (head == -1){
@@ -45,6 +62,11 @@ public class IntQueue {
 
     /**
      * Effects: restiuisce l'elemento nella testa rimuoendonodall'insieme. Se la coda è vuota solleva un'eccezione
+     * Correttezza: Assumo di avere una coda {x_1, x_2, ..., x_n}, dove n<size.
+     *              se la coda non è piena la coda in segito alla rimozione dell'elemento in testa sarà { x_2, ..., x_n, x} (in questo es head == 0)
+     * Preservazione RI: (head + 1) % els.length -> head < size
+     *                      se head == tail -> head = -1 && tail == 0 
+     * Preservazione AI:    
      */
    public int dequeue(){
        if (isEmpty()) throw new IllegalArgumentException("La coda è vuota, impossibile rimuovere elementi");
@@ -64,11 +86,12 @@ public class IntQueue {
             if (els[i] == x) return i;
         return -1;
    }
-
+   //EFFECTS: restitusice true se la coda è piena, false altrimenti
      public boolean isFull(){
        return head == tail;
    }
 
+   //EFFECTS: restitusice true se la coda è vuota, false altrimenti
    public boolean isEmpty(){
        return head == -1;
    }
@@ -81,7 +104,6 @@ public class IntQueue {
 
     @Override
     public String toString(){
-
         String r = "IntQueue : [";
         if (!isEmpty()) {
           int i;
@@ -91,14 +113,35 @@ public class IntQueue {
         return r + "]";
     }
 
-    //-1 < head < size
-    //      0 <= tail < size 
-     //     head = -1 -> tail = 0 
+    @Override 
+    public boolean equals(Object o){
+        if (!(o instanceof IntQueue)) return false;
+        IntQueue other = (IntQueue) o; 
+        if (other.size() != this.size() 
+            || other.els.length != this.els.length) return false;
+
+        for (int i = 0; i < this.size(); i++)
+            if (this.els[(this.head + i) % els.length] 
+                != other.els[(other.head + i) % other.els.length]) return false;
+        return true;
+    }
+
+    @Override 
+    public int hashCode (){
+        //JS 3.8
+        int result = 17; //salvo una costante diversa da zero
+        for (int i = 0; i<this.size(); i++)
+            result = 37 * result + this.els[(head + i) % els.length];
+        return result;  
+                
+    }
+
     private boolean repOk(){
         return head > -1
             && head < els.length
             && tail >= 0
             && tail < els.length
-            && (head != -1 || tail == 0)
+            && (head != -1 || tail == 0);
     }
 }
+
