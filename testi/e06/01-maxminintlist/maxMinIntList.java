@@ -4,7 +4,7 @@ import java.util.List;
  *             gli oggetti sono immutabili.
  *              intList è una sequenza [x1, x2, ..., xn]
  */
-public abstract class maxMinIntList extends List {
+public abstract class maxMinIntList extends IntList {
     //CAMPI 
     private List<Integer> list;
     private int max, min;
@@ -18,7 +18,7 @@ public abstract class maxMinIntList extends List {
     public void insert(int x){
         if (size() == 0 || x >= max) max=x;
         if (size() == 0 || x <= min) min=x;
-        super.add(x);
+        super.insert(x);
     }
 
     public int smallest(){
@@ -29,16 +29,23 @@ public abstract class maxMinIntList extends List {
         return this.max;
     }
 
-    private boolean RepOK(){};
+    @Override
+    protected boolean RepOK(){
+        if (!super.RepOK()) return false;
+        for (int i : this.list )
+            if (this.max > i) return false;
+        return true;
+    };
 
     @Override
     public String toString(){
-        String str = "[ ";
-        for (int i=0; i<super.size()-1; i++)    
-            str += super.get(i) + ", ";
-        str += super.get(super.size()-1) + " ]";
+       return  super.toString();
     }   
 
     @Override
-    public int hashCode(){}
+    public int hashCode(){
+        return super.hashCode();
+    }
+
+
 }

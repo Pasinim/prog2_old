@@ -131,9 +131,8 @@ public class IntQueue {
         //JS 3.8
         int result = 17; //salvo una costante diversa da zero
         for (int i = 0; i<this.size(); i++)
-            result = 37 * result + this.els[(head + i) % els.length];
-        return result;  
-                
+            result = 37 * result + Integer.hashCode(this.els[(head + i) % els.length]);
+        return result;          
     }
 
     private boolean repOk(){
