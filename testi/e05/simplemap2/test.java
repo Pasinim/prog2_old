@@ -11,7 +11,7 @@ public class test {
         SimpleMap p = new SimpleMap();
         p.put("cane", 1);
         p.put("cia", 12);
-        p.put("can", 10);
+        p.put("cane", 10);
         System.out.println(m.toString());
         System.out.println(p.toString());
         System.out.println(m.equals(p));

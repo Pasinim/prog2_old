@@ -4,7 +4,7 @@
 
 Lo scopo dell'esercizio è progettare e implementare una gerarchia di oggetti
 utili a rappresentare *numeri razionali*,
-ricordando che,
+ricordando che, 
 per ciascuna classe sviluppata,
 **dovranno essere descritte**
 (attraverso commenti presenti nel codice)
