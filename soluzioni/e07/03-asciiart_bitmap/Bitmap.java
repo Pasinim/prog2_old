@@ -45,11 +45,15 @@ public class Bitmap {
   }
 
   public void clear() {
-    for (int i = 0; i < h; i++) for (int j = 0; j < b; j++) bitmap[i][j] = false;
+    for (int i = 0; i < h; i++) 
+      for (int j = 0; j < b; j++) 
+        bitmap[i][j] = false;
   }
 
   public void invert() {
-    for (int i = 0; i < h; i++) for (int j = 0; j < b; j++) bitmap[i][j] = !bitmap[i][j];
+    for (int i = 0; i < h; i++) 
+      for (int j = 0; j < b; j++) 
+        bitmap[i][j] = !bitmap[i][j];
   }
 
   public String render() {

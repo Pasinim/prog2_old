@@ -15,11 +15,13 @@ public class Stamp implements Figure{
     }
 
     @Override
-    public void draw(Bitmap bitmap){
-
+    public void draw(Bitmap bitmap){ //qui offset = 0
+        draw(bitmap, 0, 0); 
     }
 
+    // voglio scrivere un insieme di coordinate sulla bitmap come se fosse un timbro quindi devo sommare l'offset
     public void draw(Bitmap bitmap, int r, int c){  
+        for (Coord p : coords) bitmap.turnOn(new Coord(p.r + r, p.c + c));
 
     }
 }

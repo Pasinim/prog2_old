@@ -1,20 +1,25 @@
 import java.util.Objects; 
 public class Segment implements Figure {
     
-    private Coord start;
-    private int length;
-    private boolean isVertical;
+    private final  Coord start;
+    private final  int length;
+    private final  boolean isVertical;
     
     //COSTRUTTORI
-    public Segment(Coord start, int length, boolean isVertical){
-        this.start = Objects.requireNonNull(start);
-        Coord c = new Coord(r, c);
+    public Segment( final Coord start,  final int length,  final boolean isVertical){
+        if (start == null) throw new IllegalArgumentException();
+        this.start = start;
+        if (length < 0) throw new IllegalArgumentException();
         this.length = length;
         this.isVertical = isVertical;
     }
 
     @Override
-    public void draw(Bitmap bitmap){
-
+    public void draw( final Bitmap bitmap){
+        int r = start.r, c = start.c;
+        if (isVertical) 
+            for (int i = 0; i < length; i++) bitmap.turnOn(new Coord(r + i, c)));
+        else 
+            for (int i = 0; i < length; i++) bitmap.turnOn(new Coord(r, c + i)));
     }
 }
