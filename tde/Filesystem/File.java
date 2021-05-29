@@ -1,10 +1,12 @@
-import javax.swing.RowFilter.Entry;
+package tde.Filesystem;
+import java.util.List;
 
-public class File implements Entry {
+public class File extends AbstractEntry {
     
     @Override
-    public int size();
-
+    public int getSize();
     @Override
-    public Entry create();
+    public String getName();
+    @Override
+    public List<Entry> getPath();
 }
