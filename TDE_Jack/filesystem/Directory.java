@@ -61,6 +61,7 @@ public class Directory extends AbstractEntry {
     }
 
     /**
+     * 
      * Ritorna una nuova Directory contentente la Entry e in input.
      * 
      * @return Nuovo Directory contenente e

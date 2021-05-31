@@ -19,6 +19,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
+import java.util.Objects;
 import java.util.List;
 
 /** An immutable rectangle. */
@@ -54,4 +55,6 @@ public class Rectangle implements Figure {
   public void draw(final Bitmap bitmap) {
     rectangle.draw(bitmap);
   }
+
+
 }

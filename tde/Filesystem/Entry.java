@@ -1,20 +1,11 @@
 package tde.Filesystem;
+
 import java.util.List;
-
 public interface Entry {
-
+    public String getName();
     public int getSize();
-    public String getNome();
-    public List<Entry> getContenuto();
+    public List<Entry> getContent();  
 
     @Override
-    public String toString();
-
-    @Override
-    public boolean equals();
-
-    @Override
-    public boolean repOk();
-
-
+    public boolean equals (Object obj);
 }
