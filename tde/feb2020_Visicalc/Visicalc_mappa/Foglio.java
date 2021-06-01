@@ -11,6 +11,7 @@ public class Foglio {
         HashMap foglio = new HashMap(this.righe);
     }
 
+    
     public addCella (Coord coo, Cella c){
         foglio.put(coo, c);
     }

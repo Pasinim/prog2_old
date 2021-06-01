@@ -75,10 +75,10 @@ public class Interprete {
                 int col = operatori[i].charAt(0) - 65;
                 int row = Integer.parseInt(operatori[i].substring(1));
 
-                celle.add(f.getCella(new Coordinata(row, col)));
+                celle.add(f.getCella(new Coordinata(row, col))); //aggiungo la nuova cella con le coordinate trovate al fogloo
             }
 
-            Contenuto formula = new Formula(celle, o);
+            Contenuto formula = new Formula(celle, o); //formula estende COntenuto
             f.setValore(c, formula);
         }else{
             //Nuova costante
