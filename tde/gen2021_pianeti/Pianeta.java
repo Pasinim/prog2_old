@@ -1,4 +1,5 @@
 package tde.gen2021_pianeti;
+import java.util.Objects;
 /**
  * Le istanze di questa classe rappresentano un Pianeta, identificato da un nome e da una posizione.
  * Il pianeta possiede anche un'energia potenziale e cinetica, che possono cambiare nel tempo.
@@ -25,20 +26,19 @@ public class Pianeta extends Corpo {
         return velocita.norma();
     }
 
-    public int getVelocitaX(){
-        return this.velocita.getCoordinate()[0];
-    }
+    // public int getVelocitaX(){
+    //     return this.velocita.getCoordinate()[0];
+    // }
 
-    public int getVelocitaY(){
-        return this.velocita.getCoordinate()[1];
-    }
+    // public int getVelocitaY(){
+    //     return this.velocita.getCoordinate()[1];
+    // }
 
 
     public void setVelocita(Punto vel2){
         Punto newVel = this.velocita.somma(vel2);
         this.velocita = newVel;
     }
-
     
     /**
      * EFFECTS: aumenta la veocità di una unità
@@ -88,6 +88,22 @@ public class Pianeta extends Corpo {
             B.aumentaVelocita(true);
             this.diminuisciVelocita(true);
         }
+    }
+
+    @Override 
+    public String toString(){
+        String str = this.getNome() + ": " + this.posizione.toString() + " ; " + this.velocita.toString(); 
+        return str;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        super.equals(obj);
+        if (!(obj instanceof Pianeta)) return false;
+        Pianeta other = (Pianeta) obj;
+        if (!(other.posizione.equals(this.posizione)))
+            return false;
+        return true;
     }
 }
 

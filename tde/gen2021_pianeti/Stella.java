@@ -15,5 +15,20 @@ public class Stella extends Corpo{
         super(nome, 0, 0);
         this.posizione = pos;
     }
+
+    @Override 
+    public String toString(){
+        String str = this.getNome() + ": " + this.posizione.toString();
+        return str;
+    }
     
+    @Override 
+    public boolean equals(Object obj){
+        super.equals(obj);
+        if (!(obj instanceof Stella)) return false;
+        Stella other = (Stella) obj;
+        if (!(other.posizione.equals(this.posizione)))
+            return false;
+        return true;
+    }
 }

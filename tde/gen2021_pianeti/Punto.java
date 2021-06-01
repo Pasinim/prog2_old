@@ -85,6 +85,17 @@ public class Punto {
     }
 
     @Override
+    public boolean equals(Object obj){
+        if (!(obj instanceof Punto)) return false;
+        Punto other = (Punto) obj;
+        if (this.x != other.getCoordinate()[0] 
+                || this.y != other.getCoordinate()[1]
+                || this.z != other.getCoordinate()[2])
+                return false;
+        return true;
+    }
+
+    @Override
     public String toString(){
         return "(" + this.x + ", " + this.y + ", " + this.z + ")";
     }
