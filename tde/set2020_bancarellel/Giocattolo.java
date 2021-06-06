@@ -30,10 +30,10 @@ public class Giocattolo {
         return true;
     }
 
-    @Override
-    public String toString(){
-        return this.nome + " di " + materiale;
-    }
+    // @Override
+    // public String toString(){
+    //     return this.nome + " di " + materiale;
+    // }
 
     @Override
     public int hashCode(){
