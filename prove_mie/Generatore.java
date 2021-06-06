@@ -21,7 +21,7 @@ public class Generatore implements Iterable<Integer>{
 
             @Override
             public boolean hasNext(){
-                return n < els.length;
+                return n <= els.length;
             }
 
             @Override

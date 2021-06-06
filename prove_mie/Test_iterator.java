@@ -1,4 +1,3 @@
-import java.lang.Iterable;
 import java.util.Iterator;
 public class Test_iterator {
     public static void main(String[] args) {
