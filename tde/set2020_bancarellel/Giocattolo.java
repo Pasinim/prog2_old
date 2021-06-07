@@ -21,6 +21,11 @@ public class Giocattolo {
         this.materiale = materiale;
     }
 
+    private boolean repOK(){
+        return (this.nome != null 
+                && this.materiale != null);
+    }
+    
     @Override
     public boolean equals (Object o){
         if (!(o instanceof Giocattolo)) return false;
@@ -30,10 +35,10 @@ public class Giocattolo {
         return true;
     }
 
-    // @Override
-    // public String toString(){
-    //     return this.nome + " di " + materiale;
-    // }
+    @Override
+    public String toString(){
+        return this.nome + " di " + materiale;
+    }
 
     @Override
     public int hashCode(){

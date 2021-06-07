@@ -4,10 +4,28 @@ import java.util.HashMap;
 
 public class Test {
     public static void main(String[] args) {
-        Inventario ixx = new Inventario();
-        ixx.put("cane", "gomma", 2);
-        ixx.put("papera", "gomma", 22);
-        System.out.println(ixx.toString());  
+        Inventario x = new Inventario();
+        Prezzi px = new Prezzi(x);
+        Inventario iyy = new Inventario();
+        x.aggiungi("cane", "gomma");
+        x.aggiungi("papera", "gomma");
+        x.aggiungi("cane", "gomma");
+        x.aggiungi("cane", "gomma");
+        px.setPrice("cane", "gomma", 10);
+        System.out.println(x.toString());
+        x.rimuovi("cane", "gomma");
+        x.rimuovi("cane", "gomma");
+        x.rimuovi("cane", "gomma");
+        System.out.println(x.toString());
+    
+        iyy.aggiungi("cane", "gomma");
+        iyy.aggiungi("cane", "gomma");
+
+        
+
+        // System.out.println(x.hashCode());
+        // System.out.println(iyy.hashCode());  
+        // System.out.println(px.toString());  
     }
 
 }
