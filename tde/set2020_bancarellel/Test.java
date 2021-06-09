@@ -13,9 +13,9 @@ public class Test {
         x.aggiungi("cane", "gomma");
         px.setPrice("cane", "gomma", 10);
         System.out.println(x.toString());
-        x.rimuovi("cane", "gomma");
-        x.rimuovi("cane", "gomma");
-        x.rimuovi("cane", "gomma");
+        x.rimuovi(new Giocattolo ("cane", "gomma"));
+        x.rimuovi(new Giocattolo ("papera", "gomma"));
+        x.rimuovi(new Giocattolo ("cane", "gomma"));
         System.out.println(x.toString());
     
         iyy.aggiungi("cane", "gomma");

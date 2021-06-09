@@ -23,7 +23,7 @@ public class Bancarella{
 
     @Override
     public String toString(){
-        String str = this.proprietario + "\n";
+        String str = "Bancarella di " + this.proprietario + ":\n";
         str += inventario.toString();
         return str;
     } 
