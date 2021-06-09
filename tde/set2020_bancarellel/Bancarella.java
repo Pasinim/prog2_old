@@ -21,10 +21,15 @@ public class Bancarella{
         this.inventario = inv;
     }
 
+    //EFFECTS: restituisce il proprietario di this
+    public String getProprietario(){
+        return this.proprietario;
+    }
+
     @Override
     public String toString(){
         String str = "Bancarella di " + this.proprietario + ":\n";
-        str += inventario.toString();
+        str += listino.toString();
         return str;
     } 
 }
