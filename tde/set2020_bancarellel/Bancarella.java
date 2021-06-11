@@ -21,6 +21,8 @@ public class Bancarella{
         this.inventario = inv;
     }
 
+    
+
     //EFFECTS: restituisce il proprietario di this
     public String getProprietario(){
         return this.proprietario;

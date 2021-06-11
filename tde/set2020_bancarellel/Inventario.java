@@ -104,6 +104,7 @@ public class Inventario {
         for (Map.Entry<Giocattolo, Integer> entry : other.items.entrySet())
             if (!this.items.containsKey(entry.getKey())) return false;
             //devo verificare che anche la quantità sia uguale
+            
         return true;
     }
 
