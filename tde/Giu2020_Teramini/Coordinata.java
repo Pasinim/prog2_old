@@ -1,4 +1,4 @@
-package Giu2020_Teramini.testo;
+package Giu2020_Teramini;
 /**
  * Le istanze di questa classe rappresentano una coordinata nello spazio
  * Le istanze di questa classe sono immutabili
@@ -33,7 +33,7 @@ public class Coordinata {
 
     @Override
     public String toString(){
-        return "< " + this.x + ", " + this.y + ">";
+        return "<" + this.x + ", " + this.y + ">";
     }
 
     @Override
