@@ -8,8 +8,8 @@ package Giu2020_Teramini;
  */
 
 public class Coordinata {
-    private final int x;
-    private final int y;
+    public final int x;
+    public final int y;
     
     /**
      * Inizializza una nuova coordinata

@@ -1,5 +1,7 @@
 package Giu2020_Teramini;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NavigableSet;
 import java.util.Set;
 /**
@@ -20,26 +22,23 @@ import java.util.Set;
      * Se coord null solleva una eccezione
      * @param coord Lista di coordinate del teramino
      */
-    public Rettangolo(NavigableSet<Coordinata> coord){
-        if (coord == null ) throw new  NullPointerException();
-        int maxX = Integer.MAX_VALUE;
-        int minX = Integer.MIN_VALUE;
-        int maxY = Integer.MAX_VALUE;
-        int minY = Integer.MIN_VALUE;
-        Iterator<Coordinata> it = coord.iterator();
-        //scorro la lista per trovare l'estremo sx e quello dx, devo fare con iteratore
-        while (it.hasNext()){
-            Coordinata curr = it.next();
-            //voglio fare un comparatore tra Coordinatae 
+    public Rettangolo(Set<Coordinata> coord){
+        if (coord == null ) throw new NullPointerException();
+        List<Integer> ascisse = new ArrayList<Integer>();
+        for (Coordinata c : coord){
+            ascisse.add(c.getX());
         }
-        for (int i = 1; i < coord.size(); i++){
-            if (coord.get(i).getX() >= maxX) maxX = coord.get(i).getX();
-            if (coord.get(i).getX() <= minX) minX = coord.get(i).getX();
-            if (coord.get(i).getY() >= maxY) maxY = coord.get(i).getY();
-            if (coord.get(i).getY() <= minY) minY = coord.get(i).getY();
+
+        List<Integer> ordinate = new ArrayList<Integer>();
+        for (Coordinata c : coord){
+            ascisse.add(c.getY());
         }
-        this.sx = new Coordinata(minX, minY);
-        this.dx = new Coordinata(maxX, maxY);
+        //sort esegue l'ordinamento basandosi sul comparatore passato come argomento.
+        // Se il passo null allora l'ordinamento è quello naturale
+        ascisse.sort(null);
+        ordinate.sort(null);
+        this.sx = new Coordinata (ascisse.get(0), ordinate.get(0));
+        this.dx = new Coordinata (ascisse.get(ascisse.size() - 1), ordinate.get(ordinate.size() - 1));
     }
 
     private boolean repOK(){
