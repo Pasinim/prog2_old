@@ -1,39 +1,57 @@
 package Giu2020_Teramini;
 
+import java.util.NavigableSet;
 import java.util.Set;
-import java.util.List;
+import java.util.Set;
 
 public class TeraminoConcreto implements Teramino {
 
     public final char nome;
-    public final char tipo;
-    public final List<Coordinata> coords;
+    //public final char tipo;
+    public final Set<Coordinata> coords;
+    public final Rettangolo boundingBox;
 
-    public TeraminoConcreto(char nome, char tipo, List<C)
-
+    /**
+     * EFFECTS: Inizializza un nuovo teramino. Se c è null solleva un'eccezione.
+     * @param nome nome del teramino
+     * @param c Insieme di coordinate occupate dal teramino
+     */
+    public TeraminoConcreto(char nome, NavigableSet<Coordinata> c){
+        if (c == null) throw new NullPointerException();
+        c = new NavigableSet<Coordinata>();
+        this.nome = nome;
+        this.coords = c;
+        this.boundingBox = new Rettangolo(c);
+    }
 
     @Override
-    public Set<Coordinata> getCoordinate() {
-        // TODO Auto-generated method stub
-        return null;
+    public NavigableSet<Coordinata> getCoordinate() {
+        return this.coords;
     }
 
     @Override
     public char getNome() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.nome;
     }
 
+    //<x, y> si ottiene <y, -x>
     @Override
     public Teramino ruota() {
-        // TODO Auto-generated method stub
-        return null;
+        Set<Coordinata> newCoords = new NavigableSet<Coordinata>();
+
+        //devo fare il ciclo con l'iteratore 
+        for (int i = 0; i < coords.size(); i++){
+            int newX = this.coords.get(i).getY();
+            int newY = -this.coords.get(i).getX();
+            newCoords.add(new Coordinata(newX, newY));
+        }
+        TeraminoConcreto ruotato = new TeraminoConcreto(this.nome, Set<Coordinata> newCoords);
+        return ruotato;
     }
 
     @Override
     public Rettangolo getBoundingBox() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.boundingBox();
     }
 
     @Override
