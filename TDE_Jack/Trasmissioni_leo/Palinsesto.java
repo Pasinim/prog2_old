@@ -44,7 +44,6 @@ public class Palinsesto {
     }
 
    
-
     @Override
     public String toString(){
         Map<FasciaBetaoraria,String> trasmissioni=createMap();
