@@ -11,8 +11,10 @@ public class FasciaOraria {
     public final int durata;
     
     public FasciaOraria(Betaorario inizio, int durata){
+        
         this.inizio = inizio;
         this.durata = durata;
+        
     }
 
 }

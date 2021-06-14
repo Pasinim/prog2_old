@@ -42,15 +42,35 @@ public class Betaorario {
             newora++;
             newminuti %= 80;
         }
-
         if (newora / 31 > 0)
-            	newora %= 31;
+            newora %= 31;
+
         return new Betaorario(newora, newminuti);
     }
 
-    // public int compareTo(Betaorario o){
-    //     return Integer.compare
-    // }
+    /**
+     * EFFECTS: restituisce
+     * @param durata
+     * @return
+     */
+    public Betaorario addDurata(int durata){
+        int addminuti = durata /
+    }
+
+
+
+    /**
+     * REQUIRES: o != null
+     * EFFECTS: confronta this con un altro betaoraraio.
+     *          Solleva una eccezione se o == null
+     * @param o betaorario da conforntare con this
+     * @return 1 se this>o, 0 se this == o, -1 altrimenti
+     */
+    public int compareTo(Betaorario o){
+        Objects.requireNonNull(o);
+        ComparatoreBetaorario comp = new ComparatoreBetaorario();
+        return comp.compare(this, o);
+    }
 
     @Override
     public String toString(){
