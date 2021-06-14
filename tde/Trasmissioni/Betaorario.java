@@ -59,9 +59,7 @@ public class Betaorario implements Comparable<Betaorario> {
     public Betaorario addDurata(int durata){
         if (durata < 0) throw new IllegalArgumentException("durata deve essere positivo. Trovato: " + durata);
         int newminuti = (durata + this.betaminuti) % 80  ;
-        System.out.println(newminuti);
         int newora = (((durata + this.betaminuti) / 80 ) + this.betaore) % 31;
-        System.out.println(newora);
         return new Betaorario(newora, newminuti);
     }
 
