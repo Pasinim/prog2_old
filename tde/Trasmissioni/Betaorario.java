@@ -1,3 +1,5 @@
+//https://demo.hedgedoc.org/BQMKtSW4SJiue7jr-SXtQQ#
+
 package Trasmissioni;
 
 import java.util.Objects;
@@ -9,7 +11,7 @@ import java.util.Objects;
  * ABS FUN: AF(betaore, betaminuti) -> this.betaore + ":" + this.betaminuti
  * REP INV: 0 <= Betaore <= 30, 0 <= betaminuti <= 79
  */
-public class Betaorario {
+public class Betaorario implements Comparable<Betaorario> {
     public final int betaore;
     public final int betaminuti;
 
@@ -49,15 +51,19 @@ public class Betaorario {
     }
 
     /**
-     * EFFECTS: restituisce
-     * @param durata
-     * @return
+     * REQUIRES: durata >= 0
+     * EFFECTS: restituisce un nuovo betaorario ottenuto da this + durata (espressa in betaminuti)
+     * @param durata durata da sommare
+     * @return this + durata
      */
     public Betaorario addDurata(int durata){
-        int addminuti = durata /
+        if (durata < 0) throw new IllegalArgumentException("durata deve essere positivo. Trovato: " + durata);
+        int newminuti = (durata + this.betaminuti) % 80  ;
+        System.out.println(newminuti);
+        int newora = (((durata + this.betaminuti) / 80 ) + this.betaore) % 31;
+        System.out.println(newora);
+        return new Betaorario(newora, newminuti);
     }
-
-
 
     /**
      * REQUIRES: o != null
@@ -68,8 +74,13 @@ public class Betaorario {
      */
     public int compareTo(Betaorario o){
         Objects.requireNonNull(o);
-        ComparatoreBetaorario comp = new ComparatoreBetaorario();
-        return comp.compare(this, o);
+        if (this.betaore > o.betaore) return 1;
+        if (this.betaore == o.betaore){
+            if (this.betaminuti > o.betaminuti) return 1;
+            else if (this.betaminuti == o.betaminuti) return 0;
+            else return -1;
+        }
+        return -1;
     }
 
     @Override
