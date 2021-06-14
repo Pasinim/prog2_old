@@ -27,14 +27,27 @@ public class TrasmissioneSemplice implements Trasmissione{
         this.fasciaOraria = fascia;
     }
 
+    public TrasmissioneSemplice(String titolo){
+        Objects.requireNonNull(titolo);
+        this.titolo = titolo;
+        this.fasciaOraria = null;
+    }
 
-    // posso aggiungere una fascia oraria alla trasmissione? 
-    // No pechè è semplice
 
+    /**
+     * EFFECTS: metodo dell'interfaccia Trasmissione. 
+     *      Se obj è null solleva una eccezione.
+     *      Se obj non è una istanza di trasmissioneSemplice solleva una eccezione 
+     * @param obj Trasmissione da confrontare con this
+     * @return true se this e obj si intersecano, false altrimenti
+     */
     @Override
     public boolean interseca(Object obj) {
-       
-        return false;
+        Objects.requireNonNull(obj);
+        if (!(obj instanceof TrasmissioneSemplice)) 
+            throw new IllegalArgumentException("L'argomento deve essere una TrasmissioneSemplice");
+        TrasmissioneSemplice o = (TrasmissioneSemplice) obj;
+        return this.fasciaOraria.interseca(o.fasciaOraria);
     }
 
     @Override

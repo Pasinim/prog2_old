@@ -1,6 +1,6 @@
 package Trasmissioni;
 /**
- * Questa interfaccia rappresenta una Tramissione. A cosa mi s
+ * Questa interfaccia rappresenta una Tramissione.
  */
 public interface Trasmissione {
     /**

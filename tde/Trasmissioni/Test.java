@@ -1,43 +1,56 @@
 package Trasmissioni;
+import java.util.Scanner;
 
-import java.util.List;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 //NOME ORARIO DURATA nome_trasmissione
 public class Test {
     
     
     public static void main(String[] args) {
-        InputStreamReader is = new InputStreamReader(System.in);
-        BufferedReader reader = new BufferedReader(is);
-        FasciaOraria fascia;
 
-        try {
-            for (String line = reader.readLine(); line != null; line = reader.readLine()){
-                String[] token = line.split(" ");
-                String tipoTrasmissione = token[0];
+        Palinsesto palinsesto = new Palinsesto();
+        Scanner input = new Scanner (System.in);
+        while (input.hasNext()){
+            String line = input.nextLine();
+            String[] tokens = line.split(" ");
+            String cmd = tokens[0];
+            switch (cmd){
+                case "SEMPLICE":
+                    String[] orario = tokens[1].split(":");
+                    int ora = Integer.parseInt(orario[0]); 
+                    int minuti = Integer.parseInt(orario[1]); 
+                    FasciaOraria f = new FasciaOraria(new Betaorario(ora, minuti), Integer.parseInt(tokens[2]));
+                    palinsesto.aggiungi(tokens[3], f);
 
-                switch (tipoTrasmissione){
-                    case "SEMPLICE":
-                        int ora = Integer.parseInt(token[1].At(0) + token[1].charAt(1));
-                        int minuti = Integer.parseInt(token[1].substring(3, 4));
-                        fascia = new FasciaOraria(new Betaorario(ora, minuti), Integer.parseInt(token[2]));
-                        System.out.println(fascia.toString());
-
-                    default:
-                        continue;
-                }
             }
-
         }
-        catch (IOException e){
-            System.out.println("Errore lettura input");
-            e.printStackTrace();
-        }
+        System.out.println(palinsesto.toString());
+        input.close();
+        // try {
+        //     for (String line = reader.readLine(); line != null; line = reader.readLine()){
+        //         String[] token = line.split(" ");
+        //         String tipoTrasmissione = token[0];
 
+        //         switch (tipoTrasmissione){
+        //             case "SEMPLICE":
+        //                 String[] orario = token[1].split(":");
+        //                 int ora = Integer.parseInt(orario[0]);
+        //                 int minuti = Integer.parseInt(orario[1]);
+        //                 fascia = new FasciaOraria(new Betaorario(ora, minuti), Integer.parseInt(token[2]));
+        //                 TrasmissioneSemplice t = new TrasmissioneSemplice(token[3], fascia);
+        //                 palinsesto.aggiungi(t, fascia);
+        //                 break;
 
+        //             default:
+        //                 fascia = new FasciaOraria(new Betaorario(1, 1), 1);
+        //                 line = null;
+        //         }
+        //     }
+
+        // }
+        // catch (IOException e){
+        //     System.out.println("Errore lettura input");
+        //     e.printStackTrace();
+        // }
 
 
 

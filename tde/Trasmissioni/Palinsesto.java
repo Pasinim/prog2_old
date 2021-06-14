@@ -16,11 +16,37 @@ import java.util.List;
  */
 
 public class Palinsesto {
-    private Map<Trasmissione, List<FasciaOraria>> palinsesto;
+    private List<Trasmissione> palinsesto;
 
     public Palinsesto(){
-        palinsesto = new HashMap<Trasmissione, List<FasciaOraria>>();
+        palinsesto = new ArrayList<Trasmissione>();
     }
+
+    public void aggiungi(String titolo, FasciaOraria fascia){
+        for (Trasmissione t : palinsesto){
+            TrasmissioneSemplice ts = (TrasmissioneSemplice) t;
+            if (ts.titolo.equals(titolo))
+                palinsesto.add(palinsesto.indexOf(titolo), fascia);
+
+        }
+        palinsesto.add(new TrasmissioneSemplice(titolo, fascia));
+        
+    }
+
+    public String toString(){
+        String str = "";
+        for (Trasmissione t : palinsesto)
+            str += t.toString() + "\n";
+        return str;
+    }
+
+
+    // private Map<Trasmissione, List<FasciaOraria>> palinsesto;
+    // List<FasciaOraria> fascia = new ArrayList<FasciaOraria>();
+
+    // public Palinsesto(){
+    //     palinsesto = new HashMap<Trasmissione, List<FasciaOraria>>();
+    // }
 
     // /**
     //  * Aggiunge la trasmissione t e la fasciaoraria f. Se t è già presente aggiunge f 
@@ -28,8 +54,14 @@ public class Palinsesto {
     //  * @param t Nome della trasmissione
     //  * @param f
     //  */
-    // public void aggiungi(Tramissione t, FasciaOraria f){
-
+    // public void aggiungi(Trasmissione t, FasciaOraria f){
+    //     if (!palinsesto.containsKey(t)){
+    //         fascia.add(f);
+    //         palinsesto.put(t, fascia);
+    //     }else{
+    //         fascia.add(f);
+    //         palinsesto.put(t, fascia);
+    //     }
     // }
 
 }
