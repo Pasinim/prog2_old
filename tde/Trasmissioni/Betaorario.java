@@ -94,6 +94,5 @@ public class Betaorario implements Comparable<Betaorario> {
         if (this.betaminuti != o.betaminuti) return false;
         return true;
     }
-
     
 }

@@ -23,14 +23,16 @@ public class Palinsesto {
     }
 
     public void aggiungi(String titolo, FasciaOraria fascia){
-        for (Trasmissione t : palinsesto){
-            TrasmissioneSemplice ts = (TrasmissioneSemplice) t;
-            if (ts.titolo.equals(titolo))
-                palinsesto.add(palinsesto.indexOf(titolo), fascia);
-
+        for (int i = 0; i < palinsesto.size(); i++){
+            TrasmissioneSemplice curr = new TrasmissioneSemplice(palinsesto.get(i).titolo, palinsesto.get(i).fasciaOraria);
+            if (curr.titolo.equals(titolo)){
+                System.out.println("adaadad" + idx);
+                TrasmissioneSemplice nuova = new TrasmissioneSemplice(titolo, fascia);
+                palinsesto.set(i, nuova);
+                return;
+            }
         }
         palinsesto.add(new TrasmissioneSemplice(titolo, fascia));
-        
     }
 
     public String toString(){

@@ -12,7 +12,7 @@ import java.util.Objects;
  * REP INV:
  */
 
-public class TrasmissioneSemplice implements Trasmissione{
+public class TrasmissioneSemplice implements Trasmissione {
     public final String titolo;
     public final FasciaOraria fasciaOraria;
 
@@ -31,6 +31,17 @@ public class TrasmissioneSemplice implements Trasmissione{
         Objects.requireNonNull(titolo);
         this.titolo = titolo;
         this.fasciaOraria = null;
+    }
+
+    /**
+     * EFFECTS: restituisce true se obj.titolo == this.titolo
+     * Se obj è null restituisce una eccezione
+     * @param obj Trasmissione da confrontare
+     * @return true se obj.titolo == this.titolo, false altrimenti
+     */
+    public boolean equalsTitolo(TrasmissioneSemplice obj){
+        Objects.requireNonNull(obj);
+        return this.titolo.equals(obj.titolo);
     }
 
 
@@ -54,5 +65,12 @@ public class TrasmissioneSemplice implements Trasmissione{
     public String toString(){
         return this.titolo + ": " + fasciaOraria.toString();
     }
+
     
+    // static class Compratatore implements Comparable<Trasmissione>{
+    //     @Override
+    //     public int compareTo(Trasmissione o){
+    //         i
+    //     }
+    // }
 }

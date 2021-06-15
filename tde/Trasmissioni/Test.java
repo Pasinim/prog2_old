@@ -20,7 +20,6 @@ public class Test {
                     int minuti = Integer.parseInt(orario[1]); 
                     FasciaOraria f = new FasciaOraria(new Betaorario(ora, minuti), Integer.parseInt(tokens[2]));
                     palinsesto.aggiungi(tokens[3], f);
-
             }
         }
         System.out.println(palinsesto.toString());
