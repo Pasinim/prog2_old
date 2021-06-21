@@ -8,6 +8,7 @@ package giu2021_battagliaNavale;
 public abstract class Griglia {
     protected Coordinata[][] griglia = new Coordinata[10][10];
 
+    public abstract void aggiornaGriglia();
     /**
      * Inizializza una griglia vuota (con '~')
      */
