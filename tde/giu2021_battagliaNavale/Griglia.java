@@ -1,39 +1,28 @@
-/**
- * OVERVIEW: Le istanze di questa classe astratta rappresentano una Griglia di battaglia navale
- */
-
 public abstract class Griglia {
-    protected Coordinata[][] griglia;
+    private Coordinata[][] griglia;
 
     /**
-     * EFFECTS: inizializza una nuova griglia di dimensione 10x10
+     * Inizializza una griglia vuota (con '~')
      */
-    public Griglia() {
-        griglia = new Coordinata[10][10];
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++)
-                griglia[i][j] = new Coordinata((char) (j + 'A'), i);
+    public Griglia(){
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                Coordinata c = new Coordinata((char)(i + 'A'), j);
+                System.out.println(c.toString());
+                griglia[i][j] = c;
+            }   
         }
     }
-    
-    
-    /**
-     * EFFECTS: aggiorna c.contiene con value 
-     * @param c coordinata da modificare
-     * @param value nuovo valore di c.contiene
-     */
-    public void modifica(Coordinata c, char value) {
-        c.modificaValore(value);
-    }
 
-    @Override
-    public String toString() {
+    public String toString(){
         String str = "";
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++)
-                str += griglia[i][j].toString();
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                str += griglia[i][j].getValore();
+            }
             str += "\n";
         }
         return str;
     }
+
 }
