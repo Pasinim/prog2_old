@@ -12,30 +12,22 @@ public class GrigliaFlotta extends Griglia {
         super();
         Objects.requireNonNull(n);
         this.navi = n;
-        aggiornaGriglia();
-    }
-
-    /**
-     * Si aggiornano i valori della griglia in cui sono state posizionate le navi
-     */
-    public void aggiornaGriglia(){
-        for (Nave n : this.navi)
-            for (Coordinata c : n.posizione)
+        //qui aggiorna la griglia andando ad inserire i nomi delle nabi
+        for (Nave x : this.navi)
+            for (Coordinata c : x.posizione)
                 this.griglia[c.x][c.y].updateValore(c.getValore()); 
     }
 
-    //he per poter comunicare all'avversario l'esito dei suoi attacchi.
     /**
-     * Restituisce true se l'attacco in coordinata c ha avuto successo,
-     * false altrimenti
+     * Modifica il valore della coordinata c (con '*') in this se è presente una nave.
+     * Questo significa che una nave è stata colpita
      * @param c Coordinata su cui è stato eseguito l'attacco
-     * @return true se in c è presenta una nave, false altrimenti
      */
-    public boolean esitoAttacco(Coordinata c){
+    @Override
+    public void hit(Coordinata c){
         Objects.requireNonNull(c);
         if (this.griglia[c.x][c.y].getValore() != '~')
-            return true;
-        return false;
+            this.griglia[c.x][c.y].updateValore('*');
     } 
 
     

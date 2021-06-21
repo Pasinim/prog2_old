@@ -70,6 +70,7 @@ public class Coordinata {
         Coordinata o = (Coordinata) obj;
         if (this.x != o.x) return false;
         if (this.y != o.y) return false;
+        if (this.valore != o.valore) return false;
         return true;
     }
 

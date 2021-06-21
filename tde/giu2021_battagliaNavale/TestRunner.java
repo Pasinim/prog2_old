@@ -12,8 +12,7 @@ public class TestRunner {
         //il tipo apparente di s è griglia quindi sto eseguendo il 
         //metodo di una sottoclasse su una superclasse
         Griglia s = new GrigliaStrategica();
-        ()
-        s.nuovoAttacco(c);
+        s.attacco(c);
         System.out.println(f.toString());
         //System.out.println(n.toString());
 

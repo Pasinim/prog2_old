@@ -8,38 +8,29 @@ import java.util.*;
 public class GrigliaStrategica extends Griglia{
     private List<Coordinata> attacchi;
     private GrigliaFlotta flottaAvversaria;
-    public GrigliaStrategica(){
+    public GrigliaStrategica(GrigliaFlotta flottaAvversaria){
         super();
         attacchi = new ArrayList<Coordinata>();
+        this.flottaAvversaria = flottaAvversaria;
     }
 
     /**
-     * esegue un attacco nella posizione della coordinata indicata.
+     * Esegue un attacco nella posizione della coordinata indicata.
+     * Se la nave è stata colpita il valore viene aggiornata con '*', '.' altrimenti
      * Se la coordinata è già stata attaccata in passato solleva una eccezione
      * Se c è null solleva una eccezione
      * @param c Coordinata da attaccare
+     * @return true 
      */ 
-    public void nuovoAttacco(Coordinata c){
+    @Override
+    public void hit(Coordinata c){
         Objects.requireNonNull(c);
         if (attacchi.contains(c)) throw new IllegalArgumentException("La coordinata è già stata attaccata");
         attacchi.add(c);
-        aggiornaGriglia();
+        //posso fare il confronto con equals nella coordinata
+        if ()
     }
     
-    /**
-     * Aggiorna i valori della griglia:
-     *      . se l'attacco non ha avuto successo
-     *      * se l'attacco ha avuto successo 
-     *      # se la nave è stata affondata
-     */
-    public void aggiornaGriglia(){
-        for (Coordinata c : attacchi){
-            if (flottaAvversaria.esitoAttacco(c))
-                this.griglia[c.x][c.y].updateValore('*');
-            else 
-                this.griglia[c.x][c.y].updateValore('.');
-        }
-    }
     @Override
     public String toString(){
         return "allalala";

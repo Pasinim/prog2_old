@@ -8,7 +8,6 @@ package giu2021_battagliaNavale;
 public abstract class Griglia {
     protected Coordinata[][] griglia = new Coordinata[10][10];
 
-    public abstract void aggiornaGriglia();
     /**
      * Inizializza una griglia vuota (con '~')
      */
@@ -21,6 +20,21 @@ public abstract class Griglia {
            if (!repOK()) 
             throw new IllegalArgumentException("IR non rispettato");
         }
+
+    /**
+     * Devo fare un metodo che vada bene sia per la griglia strategia che 
+     * per quella della flotta. Posso fare un metodo che nella strategica
+     * scrive '.' e '#' e nella flotta scrive i colpi subiti
+     * 
+     */
+    public abstract void hit(Coordinata c);
+
+    /**
+     * Restituisce il valore della griglia in Coordinata c
+     * @param c
+     * @return
+     */
+    public abstract char getValore(Coordinata c);
 
     public String toString(){
         String str = "";
