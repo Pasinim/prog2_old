@@ -32,7 +32,11 @@ public class Coordinata {
      * @param y
      */
     public Coordinata(char x, int y){
-        if ((x > 'J' || x < 'A') || (y < 0 || y > 9)) throw new IllegalArgumentException();
+        //System.out.println((int)'B');
+        if (x < 'A')  
+            throw new IllegalArgumentException("Ascisse non valide, Trovato: " + x);
+        if (y < 0 || y > 9) 
+            throw new IllegalArgumentException("Ordinate non valide");
         this.x = x - 'A';
         this.y = y;
         this.valore = '~';

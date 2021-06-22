@@ -32,9 +32,10 @@ public class Nave {
         if (orientamento == 'V') this.isVertical = true;
         else this.isVertical = false;
  
+        System.out.println(String.format("Il tipo %s è lungo %d \n ", this.tipo.name(), this.tipo.numPosizioni));
         for (int i = 0; i < this.tipo.numPosizioni; i++){
             if (this.isVertical){
-                Coordinata aggiungi = new Coordinata((char)(posIniziale.x + i + 'A'), posIniziale.y);
+                Coordinata aggiungi = new Coordinata((char)(posIniziale.x + i), posIniziale.y);
                 aggiungi.updateValore(this.tipo.name().charAt(0));
                 this.posizione.add(aggiungi);
             }

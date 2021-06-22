@@ -1,3 +1,7 @@
-Fare attacchi
+Fare attacchi. Modificare nave, se è stata affondata aggiorno tutte le coordinate
 
 Griglia flotta IR e AF
+
+Se devo passare una lista non lo faccio nel costruttore, ma faccio
+un metodo add. In questo modo posso chiamare il costruttore senza 
+argomenti

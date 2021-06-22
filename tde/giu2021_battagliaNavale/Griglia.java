@@ -27,14 +27,14 @@ public abstract class Griglia {
      * scrive '.' e '#' e nella flotta scrive i colpi subiti
      * 
      */
-    public abstract void hit(Coordinata c);
+    public abstract void hit(Coordinata c, GrigliaFlotta avversario);
 
     /**
      * Restituisce il valore della griglia in Coordinata c
      * @param c
      * @return
      */
-    public abstract char getValore(Coordinata c);
+    //public abstract char getValore(Coordinata c);
 
     public String toString(){
         String str = "";

@@ -8,14 +8,29 @@ import java.util.*;
  */
 public class GrigliaFlotta extends Griglia {
     public final List<Nave> navi;
-    public GrigliaFlotta(List<Nave> n){
+    
+    public GrigliaFlotta(){
         super();
-        Objects.requireNonNull(n);
-        this.navi = n;
+        this.navi = new ArrayList<Nave>();
         //qui aggiorna la griglia andando ad inserire i nomi delle nabi
-        for (Nave x : this.navi)
-            for (Coordinata c : x.posizione)
-                this.griglia[c.x][c.y].updateValore(c.getValore()); 
+        // for (Nave x : this.navi)
+        //     for (Coordinata c : x.posizione)
+        //         this.griglia[c.x][c.y].updateValore(c.getValore()); 
+    }
+
+    public void addNave(Nave n){
+        navi.add(n);
+        for (Coordinata c : n.posizione)
+            this.griglia[c.x][c.y].updateValore(c.getValore());
+    }
+
+    /**
+     * Restituisce true se nella coordinata C è presenta una nave, false altrimenti
+     */
+    public boolean isAHit(Coordinata c){
+        if (this.griglia[c.x][c.y].getValore() != '~')
+            return true;
+        return false;
     }
 
     /**
@@ -24,11 +39,17 @@ public class GrigliaFlotta extends Griglia {
      * @param c Coordinata su cui è stato eseguito l'attacco
      */
     @Override
-    public void hit(Coordinata c){
+    public void hit(Coordinata c, GrigliaFlotta avversario){
         Objects.requireNonNull(c);
         if (this.griglia[c.x][c.y].getValore() != '~')
             this.griglia[c.x][c.y].updateValore('*');
-    } 
+    }
+
+	// @Override
+	// public char getValore(Coordinata c) {
+
+    //     return 0;
+	// } 
 
     
 }

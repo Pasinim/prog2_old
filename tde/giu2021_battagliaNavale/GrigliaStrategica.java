@@ -7,11 +7,10 @@ import java.util.*;
  */
 public class GrigliaStrategica extends Griglia{
     private List<Coordinata> attacchi;
-    private GrigliaFlotta flottaAvversaria;
-    public GrigliaStrategica(GrigliaFlotta flottaAvversaria){
+
+    public GrigliaStrategica(){
         super();
         attacchi = new ArrayList<Coordinata>();
-        this.flottaAvversaria = flottaAvversaria;
     }
 
     /**
@@ -23,12 +22,15 @@ public class GrigliaStrategica extends Griglia{
      * @return true 
      */ 
     @Override
-    public void hit(Coordinata c){
+    public void hit(Coordinata c, GrigliaFlotta avversario){
         Objects.requireNonNull(c);
         if (attacchi.contains(c)) throw new IllegalArgumentException("La coordinata è già stata attaccata");
         attacchi.add(c);
-        //posso fare il confronto con equals nella coordinata
-        if ()
+        //devo fare un metodo per capire se la coordinata nell'avversario ha una nave
+        if (avversario.isAHit(c)) 
+            griglia[c.x][c.y].updateValore('*');
+        else 
+            griglia[c.x][c.y].updateValore('.');
     }
     
     @Override
