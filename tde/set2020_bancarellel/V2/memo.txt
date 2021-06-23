@@ -1,0 +1,1 @@
+Voglio creare un iteratore per iterare sul listino
