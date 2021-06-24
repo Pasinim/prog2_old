@@ -1,7 +1,7 @@
 package set2020_bancarellel.V2;
 import java.util.*;
 
-public class Acquisto extends Compratore {
+public class Acquisto {
     public final Giocattolo giocattolo;
     public final Set<Bancarella> bancarelle;
     public final int quantita;

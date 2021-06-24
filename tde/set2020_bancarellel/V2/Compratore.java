@@ -14,4 +14,9 @@ public abstract class Compratore {
     }
 
     public abstract Acquisto compra(final int num, final Giocattolo giocattolo);
+
+    public Iterator<Bancarella> bancarelleIterator(){
+        Set<Bancarella> b = new HashSet<>(this.bancarelle);
+        return b.iterator();
+    }
 }
