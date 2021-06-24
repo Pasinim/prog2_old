@@ -30,18 +30,13 @@ public class Bancarella {
         listino.aggiornaPrezzi(g, p);
     }
 
-    /**
-     * Rimuove q giocattoli g da this.inventario
-     * @param g Giocattolo da rimuovere
-     * @param q Quantità di g
-     */
-    public void rimuoviFromBancarella(Giocattolo g, int q){
-        //not null, q < 0...
-      
-        
+    public void vendi(Giocattolo giocattolo, int q){
+        if (!(this.inventario.contains(giocattolo)))
+            throw new IllegalArgumentException();
+        for ( ; q > 0; q--){
+                this.inventario.rimuovi(giocattolo);
+        }
     }
-
-
 
     private boolean repOK(){
         return (listino.size() == inventario.size());
@@ -54,7 +49,7 @@ public class Bancarella {
         //devo iterare su ogni giocattolo con iteratore + prezzoTotale(g, 1);
         while (it.hasNext()){
             Giocattolo g = it.next();
-            str = str + String.format("num: %d %s, prezzo: %d\n", inventario.getQuantita(g), g.toString(), listino.prezzoTotale(g, 1));
+            str = str + String.format("num: %d %s, prezzo: %d\n", inventario.getQuantita(g), g.toString(), listino.getPrezzo(g));
         }
         return str;
     }

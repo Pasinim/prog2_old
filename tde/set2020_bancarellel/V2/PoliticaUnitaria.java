@@ -29,11 +29,9 @@ public class PoliticaUnitaria implements Listino {
      * Se la quantità supera quella presente nell'inventario solleva una eccezione
      */
     @Override
-    public int prezzoTotale(Giocattolo g, int quantita) {
+    public int getPrezzo(Giocattolo g) {
         Objects.requireNonNull(g);
-        if (quantita < 1) 
-            throw new IllegalArgumentException("La quanttià non può essere negativa");
-        return (listino.get(g) * quantita);
+        return (listino.get(g));
     }
 
     @Override

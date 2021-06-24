@@ -15,27 +15,17 @@ public class Acquisto {
      * @param prezzo
      */
     public Acquisto(Giocattolo g, Set<Bancarella> ListaB, int q, int prezzo){
-        super(ListaB);
+        bancarelle = ListaB;
         Objects.requireNonNull(g);
         giocattolo = g;
-        bancarelle = ListaB;
         quantita = q;
         prezzoTotale = prezzo;
     }
     
-    //devo rimuovere q giocattoli dal bancareella.inventario.
     @Override
-    public Acquisto compra(int num, Giocattolo giocattolo) {
-        for (Bancarella b : this.bancarelle){
-            if (!(b.inventario.contains(giocattolo))) throw IllegalArgumentException();
-            for ( ; num > 0; num--){
-                b.inventario.rimuovi(giocattolo);
-                if (!(b.inventario.contains(giocattolo))) break;
-
-        }
-
-        }
-        return null;
+    public String toString(){
+        String str = String.format("Aquisto di: %s, numero: %d, per un costo di: %d\n", giocattolo.toString(), quantita, prezzoTotale);
+        return str;
     }
 
 

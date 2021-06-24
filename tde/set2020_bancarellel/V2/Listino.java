@@ -11,7 +11,7 @@ public interface Listino {
      * @param quantita Quantita da acquistare
      * @return prezzo totale
      */
-    public int prezzoTotale(Giocattolo g, int quantita);
+    public int getPrezzo(Giocattolo g);
     public void aggiornaPrezzi(Giocattolo g, int prezzo);
     public int size();
     @Override
