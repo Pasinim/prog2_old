@@ -1,1 +1,2 @@
-Voglio creare un iteratore per iterare sul listino
+Come uso l'iteratore per iterare sul listino?
+Il problema di prezzoUnitario è che deve avere solo e tutti i metodi dell'interfaccia
