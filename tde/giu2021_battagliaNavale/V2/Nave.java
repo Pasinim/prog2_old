@@ -7,7 +7,9 @@ import java.util.*;
  * RI:  danniSubiti <= tipo.numPosizioni
  *      Coordinate != null
  *      coordinate.size() = tipo.numPosizioni
+ *      
  */
+
 
 
 public class Nave {
@@ -15,27 +17,51 @@ public class Nave {
     private int danniSubiti;
     private boolean affondata;
     public final boolean isVerticale;
-    public List<Coordinata> coordinate; 
+    public final List<Coordinata> coordinate; 
 
     public Nave (Tipo tipo, boolean isVerticale, Coordinata posIniziale){
         this.tipo = tipo;
         this.isVerticale = isVerticale;
         affondata = false;
         danniSubiti = 0;
-        List<Coordinata> c = new ArrayList<Coordinata>();
+        coordinate = new ArrayList<>();
+        //List<Coordinata> c = new ArrayList<Coordinata>();
         
-        if (isVerticale)
+        if (isVerticale){
             for (int i = 0; i < this.tipo.numPosizioni; i++)
-                c.add(new Coordinata(posIniziale.r, posIniziale.c + i));
+                coordinate.add(new Coordinata(posIniziale.r + i, posIniziale.c));
+        }
         else
             for (int i = 0; i < this.tipo.numPosizioni; i++)
-                c.add(new Coordinata(posIniziale.r + i, posIniziale.c));
+                coordinate.add(new Coordinata(posIniziale.r, posIniziale.c + i));
 
-        coordinate = new ArrayList<Coordinata>(c);
+       //coordinate = new ArrayList<Coordinata>(c);
+        if (!repOK()) throw new IllegalArgumentException("IR non rispettato");
+        }
+
+    public void incrementaDanno(){
+        this.danniSubiti++;
+        if (danniSubiti == this.tipo.numPosizioni)
+            affondata = true;
     }
 
-    public static void main(String[] args) {
-        Nave n = new Nave(Tipo.C, true, new Coordinata(0, 0));
+    public boolean getAffondata(){
+        return affondata;
+    }
 
+    private boolean repOK(){
+        return (danniSubiti <= tipo.numPosizioni
+               && coordinate != null
+               && coordinate.size() == tipo.numPosizioni);
+    }
+
+    @Override
+    public String toString(){
+        String str = String.format("Nave %s: ", tipo.name());
+        for (int i = 0; i < tipo.numPosizioni; i++)
+            str += coordinate.get(i).toString() + " ";
+        return str + " Danni subiti: " + this.danniSubiti + "\n";
     }
 }
+
+

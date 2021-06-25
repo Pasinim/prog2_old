@@ -8,7 +8,7 @@ public enum Tipo{
 
     int numPosizioni;
 
-    Tipo(int numPosizioni){
+    private Tipo(int numPosizioni){
         this.numPosizioni = numPosizioni;
         }
     }
