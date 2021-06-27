@@ -25,6 +25,6 @@ se x < x', l'ascissa della velocità di A diminuisce di 1.
 Lo stesso dicasi per le altre coordinate delle posizioni: le ordinate influenzano l'ordinata della velocità, le quote influenzano la quota della velocità.
 2 - Cambia la posizione di ciascun pianeta in base alla sua velocità: se, dopo la variazione di velocità descritta prima, quella di A è diventata (1, 0, 0) e quella di B (-1, 0, 0), le posizioni risultanti saranno rispettivamente (x + 1, y, z) e (x' - 1, y', z').
 
-Un sistema astronomico è una collezione di pianeti e stelle fisse. Questo deve essere in grado di eseguire una simulazione (come quella di cui sopra) per un intervallo di tempo arbitrario (esprimibile come intero), e di calcolare l'energia totale del sistema nella configurazione in cui viene a trovarsi trascorso questo tempo.
+Un sistema ashacalcolare l'energia totale del sistema nella configurazione in cui viene a trovarsi trascorso questo tempo.
 
 Bonus: prima di stampare un sistema astronomico, ordinare alfabeticamente in base al nome l'insieme dei suoi corpi celesti.
