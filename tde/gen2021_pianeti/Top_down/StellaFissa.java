@@ -29,12 +29,6 @@ public class StellaFissa extends CorpoCeleste {
         return new Punto(0, 0, 0);
     }
 
-    @Override
-    public void iterazione(CorpoCeleste c) {
-        // TODO Auto-generated method stub
-        
-    }
-
     @Override 
     public String toString(){
         //return this.toString() + ", Velocita: " + this.velocita.toString() + "\n";

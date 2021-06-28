@@ -98,6 +98,7 @@ public class SistemaAstronomico {
             while (it2.hasNext()){
                 CorpoCeleste c2 = it2.next();
                 if (c2.equals(c1)) continue;
+                //System.out.println("\t\t" + c2.toString());
                 //ascisse
                 if (c2.getVelocita().x > c1.getVelocita().x){
                     c2.setPosizione(c2.getPosizione().somma(x));
@@ -130,12 +131,21 @@ public class SistemaAstronomico {
             }
         }
         }
+    
+    public long energiaTotale(){
+        long tot = 0;
+        for (CorpoCeleste c : sistema)
+            tot += c.getK() * c.getU();
+        return tot;
+    }
+
     @Override
     public String toString(){
         String str = "";
         Iterator<CorpoCeleste> it = sistema.iterator();
         while (it.hasNext())
             str += it.next().toString() + "\n";
+        str = str + String.format("Energia totale: %d", this.energiaTotale());
         return str;
     }
     
@@ -143,17 +153,20 @@ public class SistemaAstronomico {
         SistemaAstronomico s = new SistemaAstronomico(1);
         CorpoCeleste p1 = new Pianeta("Marte", new Punto(1, 0 , 0));
         CorpoCeleste p2 = new StellaFissa("Pluto", new Punto(3, 3, 3));
-        CorpoCeleste p3 = new Pianeta("Aippo", new Punto(1, 0, 1));
+        CorpoCeleste p3 = new Pianeta("Saturno", new Punto(1, 0, 1));
+
+        CorpoCeleste p5 = new Pianeta("Saturno", new Punto(1, 0, 1));
         CorpoCeleste p4 = new Pianeta("Piskis", new Punto(1, 3, 5));
         // System.out.println(p1.toString());
         // System.out.println(p2.toString());
         s.aggiungiCorpo(p1);
-        s.aggiungiCorpo(p2);
-       // s.aggiungiCorpo(p3);
-       // s.aggiungiCorpo(p4);
+        s.aggiungiCorpo(p3);
+       s.aggiungiCorpo(p3);
+        s.aggiungiCorpo(p4);
         System.out.println(s.toString());
         s.simula();
         System.out.println(s.toString());
+        System.out.println(p3.equals(p4));
 
 
 

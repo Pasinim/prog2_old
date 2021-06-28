@@ -16,14 +16,14 @@ import java.util.*;
 public class Pianeta extends CorpoCeleste {
     
     private Punto velocita;
-    private int potenziale;
-    private int cinetica;
+    // private int potenziale;
+    // private int cinetica;
 
     public Pianeta(String nome, Punto posizione){
         super(nome, posizione);
-        this.cinetica = posizione.norma();
+        //this.cinetica = posizione.norma();
         this.velocita = new Punto(0, 0, 0);
-        this.potenziale = 0;
+        //this.potenziale = 0;
     }
 
     @Override
@@ -33,60 +33,14 @@ public class Pianeta extends CorpoCeleste {
             this.velocita = p;
     }
 
-    /**
-     * Durante una iterazione viene modificata la velocità ed anche la posizione
-     * se x > x', l'ascissa della velocità di A aumenta di 1;
-     * se x < x', l'ascissa della velocità di A diminuisce di 1.
-     * 
-     * 1 - Cambia la velocità di ciascun pianeta 
-     */    
-    @Override
-    public void iterazione(CorpoCeleste c) {
-        Punto x = new Punto(1, 0, 0);
-        Punto y = new Punto(0, 1, 0);
-        Punto z = new Punto(0, 0, 1);
-        //ascisse
-        if (this.getPosizione().x > c.getPosizione().x){
-            this.setVelocita(this.velocita.somma(x));
-            c.setVelocita(c.getVelocita().sottrai(x));
-        }
-        else if (this.getPosizione().x < c.getPosizione().x){
-            c.setVelocita(c.getVelocita().somma(x));
-            this.setVelocita(this.velocita.sottrai(x));
-        }
-
-        //ordinate 
-        if (this.getPosizione().y > c.getPosizione().y){
-            this.setVelocita(this.velocita.somma(y));
-            c.setVelocita(c.getVelocita().sottrai(y));
-        }
-        else if (this.getPosizione().y < c.getPosizione().y){
-            c.setVelocita(c.getVelocita().somma(y));
-            this.setVelocita(this.velocita.sottrai(y));
-        } 
-
-        //z
-        if (this.getPosizione().z > c.getPosizione().z){
-            this.setVelocita(this.velocita.somma(z));
-            c.setVelocita(c.getVelocita().sottrai(z));
-        }
-        else if (this.getPosizione().z < c.getPosizione().z){
-            c.setPosizione(c.getVelocita().somma(z));
-            this.setVelocita(this.velocita.sottrai(z));
-        } 
-        
-    }
-
     @Override
     public int getK() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.getPosizione().norma();
     }
 
     @Override
     public int getU() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.getPosizione().norma();
     }
 
     @Override
@@ -115,8 +69,6 @@ public class Pianeta extends CorpoCeleste {
         CorpoCeleste p2 = new StellaFissa("Pluto", new Punto(3, 3, 3));
         System.out.println(p1.toString());
         System.out.println(p2.toString());
-
-        p1.iterazione(p2);
         System.out.println(p1.toString());
         System.out.println(p2.toString());
     }

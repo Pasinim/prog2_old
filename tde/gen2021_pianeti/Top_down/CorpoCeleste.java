@@ -42,7 +42,6 @@ public abstract class CorpoCeleste {
     public abstract int getU();
     public abstract Punto getVelocita();
     public abstract void setVelocita(Punto p);
-    public abstract void iterazione(CorpoCeleste c );
 
     @Override
     public boolean equals(Object obj){
@@ -51,7 +50,6 @@ public abstract class CorpoCeleste {
         if (!(this.nome.equals(o.nome))) return false;
         return true;
     }
-
 
     @Override
     public int hashCode(){
