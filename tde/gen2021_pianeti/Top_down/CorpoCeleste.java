@@ -24,13 +24,24 @@ public abstract class CorpoCeleste {
         return this.posizione;
     }
 
+
+    /**
+     * Se this è un pianeta modifica la sua posizione, 
+     * se this è una stella fissa non fa nulla dato che la posizione è immutabile
+     * 
+     */
     public void setPosizione(Punto p){
-        this.posizione = p;
+        Objects.requireNonNull(p);
+        if (this instanceof Pianeta)
+            this.posizione = p;
+        else 
+            return;
     }
     
     public abstract int getK();
     public abstract int getU();
-    public abstract int getVelocita();
+    public abstract Punto getVelocita();
+    public abstract void setVelocita(Punto p);
     public abstract void iterazione(CorpoCeleste c );
 
     @Override
@@ -39,6 +50,12 @@ public abstract class CorpoCeleste {
         CorpoCeleste o = (CorpoCeleste) obj;
         if (!(this.nome.equals(o.nome))) return false;
         return true;
+    }
+
+
+    @Override
+    public int hashCode(){
+        return Integer.hashCode(this.nome.hashCode());
     }
 
     @Override

@@ -24,9 +24,9 @@ public class StellaFissa extends CorpoCeleste {
     }
 
     @Override
-    public int getVelocita() {
+    public Punto getVelocita() {
         // TODO Auto-generated method stub
-        return 0;
+        return new Punto(0, 0, 0);
     }
 
     @Override
@@ -34,5 +34,26 @@ public class StellaFissa extends CorpoCeleste {
         // TODO Auto-generated method stub
         
     }
-    
+
+    @Override 
+    public String toString(){
+        //return this.toString() + ", Velocita: " + this.velocita.toString() + "\n";
+        return String.format("%s: %s, Velocità: %s", nome,  getPosizione().toString(), getVelocita().toString());
+
+    }
+
+	@Override
+	public void setVelocita(Punto p) {
+		return;
+	}
+
+    @Override
+    public boolean equals(Object obj){
+        if (super.equals(obj)) return true;
+        if (!(obj instanceof StellaFissa)) return false;
+        StellaFissa o = (StellaFissa) obj;
+        if (!(this.nome.equals(o.nome))) return false;
+        return true;
+    }
+
 }
