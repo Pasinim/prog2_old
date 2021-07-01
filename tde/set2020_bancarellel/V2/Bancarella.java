@@ -36,6 +36,11 @@ public class Bancarella {
         for ( ; q > 0; q--){
                 this.inventario.rimuovi(giocattolo);
         }
+
+        // try {(this.inventario.contains(giocattolo))}
+        // catch (IllegalArgumentException e){
+        //     //fai cose
+        // }
     }
 
     private boolean repOK(){

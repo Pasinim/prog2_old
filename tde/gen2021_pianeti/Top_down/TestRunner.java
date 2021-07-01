@@ -3,9 +3,17 @@ import java.util.*;
 
 public class TestRunner {
     public static void main(String[] args) {
-        final Punto p = new Punto (1, 2, 3);
-        Punto x = new Punto (1, 1, 1);
-        p = p.somma(x);
-        System.out.println(p.toString());
+        Map<String, Integer> m = new HashMap<String, Integer>();
+
+        m.put("A", 1);
+        m.put("B", 2);
+        m.put("C", 3);
+
+        public mapInterator<String> myIterator(){
+            return new mapGenerator();
+        }
+        private class mapGenerator implements Iterable<String>{
+
+        }
     }
 }
