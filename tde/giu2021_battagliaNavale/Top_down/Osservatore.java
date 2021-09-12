@@ -31,11 +31,7 @@ public class Osservatore {
        g2 = new Giocatore(f2, new GrigliaStrategica());
    }
 
-   private GrigliaFlotta aggiungiAFlotta(Set<Nave> navi){
-        Iterator<Nave> it = navi.iterator();
-        GrigliaFlotta g = new GrigliaFlotta();
-        while (it.hasNext())
-            g.aggiungiNave(it.next());
-        return g;
+   public popolaGiocatori(){
+       for (Nave n : navi)
    }
 }
