@@ -36,8 +36,8 @@ public class Osservatore {
     }
 
     public Tipo getTipo(char c){
-            if (c != 'P' && c != 'S' && c != 'F' && c != 'C')
-                throw new IllegalArgumentException();
+            // if (c != 'P' && c != 'S' && c != 'F' && c != 'C')
+            //     throw new IllegalArgumentException();
             switch (c){
                 case 'P':
                 return Tipo.P;
@@ -69,6 +69,7 @@ public class Osservatore {
         }
     public static void main(String[] args) {
 
+        Tipo n = Tipo.S;
 
     }
 
