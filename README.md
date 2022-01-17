@@ -6,7 +6,7 @@
 
 ___
  :exclamation:                                                                                                                 
-:exclamation: Obsoleto, fare riferimento [qui](github.com/pasinim/prog2_appelloInvernale) per il nuovo codice aggiornato di TDE :exclamation:
+:exclamation: Obsoleto, fare riferimento [qui](https://github.com/Pasinim/prog2_appelloInvernale) per il nuovo codice aggiornato di TDE :exclamation:
  <br/>:exclamation:                                                                                                                   
 ___
 
