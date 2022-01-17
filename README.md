@@ -4,11 +4,12 @@
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-blue.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://bit.ly/34lXYkT)
 
->
-> :exclamation: Obsoleto, fare riferimento [qui](github.com/pasinim/prog2_appelloInvernale) per il nuovo codice aggiornato di TDE :exclamation:
->
-
 ___
+ :exclamation:                                                                                                                 
+:exclamation: Obsoleto, fare riferimento [qui](github.com/pasinim/prog2_appelloInvernale) per il nuovo codice aggiornato di TDE :exclamation:
+ <br/>:exclamation:                                                                                                                   
+___
+
 Questo repository contiene il materiale di supporto alle *esercitazioni*
 dell'insegnamento di [Programmazione II](https://prog2.di.unimi.it/) del corso
 di laurea in [Informatica](https://informatica.cdl.unimi.it/it) dell'[Università
